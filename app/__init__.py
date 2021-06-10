@@ -34,11 +34,12 @@ from app.models import User, Task
 
 class MyUserAdmin(ModelView):
     column_exclude_list = ('password_hash',)
+    column_hide_backrefs = False
 
 from sqlalchemy import inspect
 
 class ChildView(ModelView):
-    column_display_pk = True # optional, but I like to see the IDs in the list
+    column_display_pk = False # optional, but I like to see the IDs in the list
     column_hide_backrefs = False
     column_list = [c_attr.key for c_attr in inspect(Task).mapper.column_attrs]
 
