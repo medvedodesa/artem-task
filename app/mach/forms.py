@@ -17,7 +17,7 @@ class MachNew(FlaskForm):
 
     # Функция должна быть подключена в случае, если 2 задачи не могут иметь 1 название!!!!!
     def validate_task(self, task):
-        task = Task.query.filter(and_(Task.user_id==current_user.username, Task.task==task)).first()
+        task = Task.query.filter(and_(Task.user_id==current_user.id, Task.task==task)).first()
         if task is not None:
             raise ValidationError('Это имя уже использовано')
 
