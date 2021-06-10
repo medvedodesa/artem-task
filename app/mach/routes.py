@@ -24,9 +24,9 @@ def mach_add():
         egg = form.egg.data
         date = form.date_pro.data
         date_end=date+timedelta(days=egg)
-
+        task = form.task.data,
         print(date)
-        new = Task(task=form.task.data, user_id=current_user.username, user_add=current_user.username, date_pro=date, date_end=date_end,
+        new = Task(task=task, user_id=current_user.username, user_add=current_user.username, date_pro=date, date_end=date_end,
                       cicle=0)
         print(form.date_pro.data, type(form.date_pro.data))
         db.session.add(new)
