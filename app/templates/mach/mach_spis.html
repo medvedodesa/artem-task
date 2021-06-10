@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <html>
+    <body>
+    <div style="text-align:center;">
+        <table style="" width="80%" border="0" align="center">
+
+
+            <h2>Список задач {{ current_user.username }}</h2>
+            Вы имеете {{ count }} задач
+            <hr>
+            <thead>
+            <tr align="left">
+                <th width="15%"><a>Наименование</a></th>
+                <th width="15%"><a>Дата начала</a></th>
+                <th width="15%"><a>Дата окончания</a></th>
+                <th width="15%"><a>Дата добавления</a></th>
+{#                <th width="15%"><a>Кем добавлено</a></th>#}
+            </tr>
+            </thead>
+            {% for item in items %}
+                <tr>
+                    <td>{{ item.task }}</td>
+                    <td>{{ item.date_pro.strftime('%Y-%m-%d') }}</td>
+                    <td>{{ item.date_end.strftime('%Y-%m-%d') }}</td>
+                    <td>{{ item.date_add.strftime('%Y-%m-%d') }}</td>
+{#                    <td>{{ item.cicle }}</td>#}
+                </tr>
+            {% endfor %}
+{#            {% if items.has_prev %}#}
+{#                <a href="{{ url_for(ze, page=items.prev_num) }}">&lt;&lt; Предыдущая</a>{% else %}&lt;&lt;#}
+{#                Предыдущая{% endif %} |#}
+{#            {% if items.has_next %}#}
+{#                <a href="{{ url_for(ze, page=items.next_num) }}">Следующая &gt;&gt;</a>{% else %}Следующая &gt;#}
+{#                &gt;{% endif %}#}
+        </table>
+    </div>
+    </body>
+
+    </html>
+{% endblock %}

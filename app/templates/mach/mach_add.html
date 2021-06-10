@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="p1">
+        <h3>Добавить Задачу</h3>
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.task.label }}<br>
+                {{ form.task(size=50) }}<br>
+                {% for error in form.task.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+
+
+{#                        <p>#}
+{#                {{ form.user_id.label }}<br>#}
+{#                {{ form.user_id(size=50) }}<br>#}
+{#                {% for error in form.user_id.errors %}#}
+{#                    <span style="color: red;">[{{ error }}]</span>#}
+{#                {% endfor %}#}
+{#            </p> #}
+            <p>
+                {{ form.egg.label }}<br>
+                {{ form.egg }}<br>
+                {% for error in form.egg.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.date_pro.label }}<br>
+                {{ form.date_pro }}<br>
+            {{ form.date_pro.description }}
+                {% for error in form.date_pro.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+
+
+            <p>{{ form.submit() }}</p></form>
+    </div>
+{% endblock %}

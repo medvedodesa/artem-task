@@ -1,0 +1,64 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styl.css') }}">
+
+    {% if title %}
+        <title>{{ title }}</title>
+    {% else %}
+        <title>SEMExpert CRM</title>
+    {% endif %}
+</head>
+<body>
+<header>
+
+    {% if current_user.is_anonymous %}
+
+
+
+
+        <link href='https://fonts.googleapis.com/css?family=Alegreya+Sans:400,800' rel='stylesheet' type='text/css'>
+        <nav class="menu">
+            <ul>
+                <li><a href="#products">Denied</a></li>
+                <li><a href="#services">Denied</a></li>
+                <li><a href="{{ url_for('auth.register') }}">Регистрация</a></li>
+                <li><a href="{{ url_for('auth.login') }}">Войти</a></li>
+                <li><a href="#contact">Denied</a></li>
+            </ul>
+        </nav>
+        <h1 class="hint">SEMExpert`s Task Programm</h1>
+        <p class="hint">Заполняй своевременно - и будь счастлив!</p>
+
+
+
+    {% else %}
+
+        <link href='https://fonts.googleapis.com/css?family=Alegreya+Sans:400,800' rel='stylesheet' type='text/css'>
+        <nav class="menu">
+            <ul>
+                <li><a href="{{ url_for('mach.mach_spis') }}">Список</a></li>
+                <li><a href="{{ url_for('mach.mach_add') }}">Добавить</a></li>
+                <li><a href="{{ url_for('mach.mach_del') }}">Выполнить</a></li>
+                <li><a href="{{ url_for('auth.logout') }}">Выйти</a></li>
+                <li><a href="#contact">Профиль</a></li>
+            </ul>
+        </nav>
+        <h1 class="hint">SEMExpert`s Task Programm</h1>
+        <p class="hint">Заполняй своевременно - и будь счастлив!</p>
+    {% endif %}
+
+</header>
+<hr>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+{% block content %}{% endblock %}
+</body>
+</html>
