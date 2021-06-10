@@ -14,6 +14,7 @@ from sqlalchemy.sql import and_, text
 from sqlalchemy import func
 from app.mach import bp
 from app.mach.forms import MachNew, MachDel
+import datetime
 
 
 @bp.route('/mach_add', methods=['GET', 'POST'])
@@ -47,6 +48,7 @@ def mach_del():
             z = x.task
             ob = Task.query.filter_by(task=z).first()
             ob.status=True
+            ob.date_del=datetime.datetime.now
             # db.session.delete(ob)
             db.session.commit()
             return redirect(url_for('mach.mach_spis'))

@@ -35,7 +35,20 @@ from app.models import User, Task
 class MyUserAdmin(ModelView):
     column_exclude_list = ('password_hash',)
 
+from sqlalchemy import inspect
+
+class ChildView(ModelView):
+    column_display_pk = True # optional, but I like to see the IDs in the list
+    column_hide_backrefs = False
+    column_list = [c_attr.key for c_attr in inspect(Task).mapper.column_attrs]
+
+
+
+
 app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
 admin = Admin(app, name='SEMExperts CRM', template_mode='bootstrap3')
 admin.add_view(MyUserAdmin(User, db.session, name='User'))
-admin.add_view(ModelView(Task, db.session, name='Task'))
+
+admin.add_view(ChildView(Task, db.session, name='Task'))
+
+# admin.add_view(ModelView(Task, db.session, name='Task'))
