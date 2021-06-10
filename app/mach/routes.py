@@ -60,6 +60,6 @@ def mach_del():
 @bp.route('/mach_spis', methods=['GET', 'POST'])
 @login_required
 def mach_spis():
-    data = Task.query.filter(and_(Task.user_id == current_user.username, Task.status == False)).order_by(Task.task).all()
-    count = Task.query.filter(and_(Task.user_id == current_user.username, Task.status == False)).order_by(Task.task).count()
+    data = Task.query.filter(and_(Task.user_id == current_user.id, Task.status == False)).order_by(Task.task).all()
+    count = Task.query.filter(and_(Task.user_id == current_user.id, Task.status == False)).order_by(Task.task).count()
     return render_template("mach/mach_spis.html", title='List task', items=data, count=count)
