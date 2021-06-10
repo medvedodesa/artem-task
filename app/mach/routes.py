@@ -48,7 +48,8 @@ def mach_del():
             z = x.task
             ob = Task.query.filter_by(task=z).first()
             ob.status=True
-            ob.date_del=datetime.datetime.now
+            z1=datetime.datetime.now()
+            ob.date_del=z1
             # db.session.delete(ob)
             db.session.commit()
             return redirect(url_for('mach.mach_spis'))
